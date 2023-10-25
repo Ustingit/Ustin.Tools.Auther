@@ -1,0 +1,9 @@
+*.jsonignore
+*.sensitive.json
+node_modules/
+bin/
+obj/
+.vscode/
+.idea/
+*.appsettings.json
+appsettings.json
