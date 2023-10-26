@@ -1,6 +1,4 @@
-﻿using Authorizer.ClassesGeneration;
-
-namespace Authorizer
+﻿namespace Authorizer
 {
 	public class AppSettings
 	{
@@ -20,6 +18,6 @@ namespace Authorizer
 
 		public string ApiKeyHeaderName { get; set; }
 
-		public RawClassDeclarationInfo[] Classes { get; set; }
+		public string PathToResult { get; set; }
 	}
 }
