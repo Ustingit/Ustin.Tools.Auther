@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Authorizer.ClassesGeneration;
 using Authorizer.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -22,6 +23,10 @@ namespace Authorizer
 		{
 			try
 			{
+				var responseClass = _settings.Classes.BuildHierarchy();
+
+				throw new ArgumentNullException();
+
 				using var client = new HttpClient();
 				var request = new HttpRequestMessage(HttpMethod.Post, _settings.ApiUrl);
 				request.Headers.Add(_settings.ApiKeyHeaderName, _settings.ApiKey);
@@ -37,7 +42,10 @@ namespace Authorizer
 
 				response.EnsureSuccessStatusCode();
 				var content = await response.Content.ReadAsStringAsync(cancellationToken);
-					
+
+				var deserializedObject = JsonConvert.DeserializeObject(content, responseClass);
+				var typedObject = Convert.ChangeType(deserializedObject, responseClass);
+
 				return (JsonConvert.DeserializeObject<AuthInfo>(content))?.AccessValue?.Value ?? string.Empty;
 			}
 			catch (Exception e)

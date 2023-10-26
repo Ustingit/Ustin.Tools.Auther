@@ -1,4 +1,6 @@
-﻿namespace Authorizer
+﻿using Authorizer.ClassesGeneration;
+
+namespace Authorizer
 {
 	public class AppSettings
 	{
@@ -17,5 +19,7 @@
 		public string Email { get; set; }
 
 		public string ApiKeyHeaderName { get; set; }
+
+		public RawClassDeclarationInfo[] Classes { get; set; }
 	}
 }

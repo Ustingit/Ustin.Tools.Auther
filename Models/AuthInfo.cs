@@ -9,7 +9,6 @@ namespace Authorizer
 		public RefreshValue RefreshValue { get; set; }
 	}
 
-
 	public class AccessValue
 	{
 		public string Value { get; set; }
